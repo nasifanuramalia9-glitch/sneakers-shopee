@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Birthday ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg,#240046,#7b2cbf,#e056a0);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 90%;
+  max-width: 430px;
+  padding: 30px 20px;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+.heart {
+  font-size: 65px;
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.25); }
+}
+
+button {
+  border: none;
+  padding: 15px 45px;
+  border-radius: 40px;
+  background: #ff4d8d;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 0 20px #ff8fab;
+}
+
+button:active {
+  transform: scale(.95);
+}
+
+#surprise {
+  display: none;
+  animation: muncul 1.5s ease;
+}
+
+@keyframes muncul {
+  from {opacity: 0; transform: translateY(30px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+.message {
+  line-height: 1.9;
+  font-size: 17px;
+}
+
+.floating {
+  position: fixed;
+  bottom: -30px;
+  animation: naik 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes naik {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="opening">
+  <div class="heart">❤️</div>
+  <h1>Something Special For You</h1>
+  <p>Ada sesuatu yang ingin aku tunjukkan...</p>
+  <br>
+  <button onclick="bukaKejutan()">BUKA ❤️</button>
+</div>
+
+<div id="surprise">
+  <div class="heart">💖</div>
+  <h1>HAPPY BIRTHDAY!</h1>
+  <h2>🎂 22nd Birthday 🎂</h2>
+
+  <div class="message">
+    Selamat ulang tahun ❤️<br><br>
+
+    Semoga kamu selalu diberikan kebahagiaan,
+    kesehatan, dan kemudahan dalam setiap langkahmu.
+
+    Semoga semua impian yang kamu inginkan
+    perlahan menjadi kenyataan.
+
+    Tetaplah menjadi seseorang yang istimewa.
+    Jangan pernah berhenti tersenyum.
+
+    <br><br>
+    <b>Once again, Happy Birthday! ❤️</b>
+  </div>
+</div>
+
+</div>
+
+<audio id="musik" preload="auto">
+  <source src="lagu-ultah.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function bukaKejutan() {
+  document.getElementById("opening").style.display = "none";
+  document.getElementById("surprise").style.display = "block";
+
+  const musik = document.getElementById("musik");
+  musik.currentTime = 0;
+  musik.play().catch(error => {
+    console.log("Musik belum dapat diputar:", error);
+  });
+
+  setInterval(() => {
+    const hati = document.createElement("div");
+    hati.className = "floating";
+    hati.innerHTML = ["❤️","💕","💖","🌹","✨"][
+      Math.floor(Math.random()*5)
+    ];
+    hati.style.left = Math.random()*100 + "vw";
+    hati.style.fontSize = (20 + Math.random()*25) + "px";
+    document.body.appendChild(hati);
+
+    setTimeout(() => hati.remove(), 6000);
+  }, 350);
+}
+</script>
+
+</body>
+</html>
